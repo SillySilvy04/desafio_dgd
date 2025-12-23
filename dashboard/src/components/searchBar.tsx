@@ -9,12 +9,11 @@ export function SearchBar({ onSearch }: Props) {
 
   return (
     <div>
-      <label>Buscar Repositório: </label>
       <input 
         type="text" 
         value={term} 
         onChange={(e) => setTerm(e.target.value)} 
-        placeholder="Digite o tema..."
+        placeholder="Insira o termo desejado" 
       />
       <button onClick={() => onSearch(term)}>Pesquisar</button>
     </div>
