@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Sidebar } from "./components/Sidebar";
-import { RepositoryName } from "./components/repositoryName";
-import { Stars } from "./components/stars";
-import { Forks } from "./components/forks";
-import { Watchers } from "./components/watchers";
-import { GraphicTime } from "./components/graphicTime";
-import { GraphicUsers } from "./components/graphicUsers";
+import { RepositoryName } from "./components/RepositoryName";
+import { Stars } from "./components/Stars";
+import { Forks } from "./components/Forks";
+import { Watchers } from "./components/Watchers";
+import { GraphicTime } from "./components/GraphicTime";
+import { GraphicUsers, type LanguageData } from "./components/GraphicLanguages";
 import styles from "./App.module.css";
 
 interface RepoData {
@@ -19,6 +19,7 @@ interface RepoData {
 function App() {
   const [repoList, setRepoList] = useState<RepoData[]>([]);
   const [mainRepo, setMainRepo] = useState<RepoData | null>(null);
+  const [languages, setLanguages] = useState<LanguageData[]>([]);
 
   const handleSearch = async (term: string) => {
     if (!term) return;
@@ -27,10 +28,27 @@ function App() {
         `https://api.github.com/search/repositories?q=${term}&sort=stars&order=desc`
       );
       const json = await response.json();
+
       if (json.items && json.items.length > 0) {
         const top10 = json.items.slice(0, 10);
+        const firstRepo = top10[0];
+
         setRepoList(top10);
-        setMainRepo(top10[0]);
+        setMainRepo(firstRepo);
+
+        const langResponse = await fetch(
+          `https://api.github.com/repos/${firstRepo.full_name}/languages`
+        );
+        const langJson = await langResponse.json();
+
+        const formattedLanguages: LanguageData[] = Object.keys(langJson).map(
+          (key) => ({
+            name: key,
+            value: langJson[key],
+          })
+        );
+
+        setLanguages(formattedLanguages.slice(0, 5));
       }
     } catch (error) {
       console.error("Erro na busca", error);
@@ -55,8 +73,8 @@ function App() {
             </div>
 
             <div className={styles.chartsGrid}>
-              <GraphicTime />
-              <GraphicUsers />
+              <GraphicTime repoName={mainRepo.full_name} />
+              <GraphicUsers data={languages} />
             </div>
           </>
         ) : (

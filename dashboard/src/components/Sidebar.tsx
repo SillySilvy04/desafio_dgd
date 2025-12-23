@@ -1,4 +1,4 @@
-import { SearchBar } from "./searchBar";
+import { SearchBar } from "./SearchBar";
 import styles from "./Sidebar.module.css";
 
 interface RepoData {
