@@ -63,7 +63,7 @@ function App() {
         {mainRepo ? (
           <>
             <div className={styles.header}>
-              <RepositoryName name={mainRepo.full_name} />
+              <RepositoryName full_name={mainRepo.full_name} />
             </div>
 
             <div className={styles.statsGrid}>

@@ -1,5 +1,6 @@
 import { SearchBar } from "./SearchBar";
 import styles from "./Sidebar.module.css";
+import starIcon from "../assets/star.png";
 
 interface RepoData {
   id: number;
@@ -15,7 +16,7 @@ interface SidebarProps {
 export function Sidebar({ onSearch, repoList }: SidebarProps) {
   return (
     <aside className={styles.sidebar}>
-      <h1 className={styles.title}>DashGit</h1>
+      <h1 className={styles.title}>Dash-Git</h1>
 
       <SearchBar onSearch={onSearch} />
 
@@ -32,7 +33,12 @@ export function Sidebar({ onSearch, repoList }: SidebarProps) {
                     {repo.full_name}
                   </span>
                   <span className={styles.repoStars}>
-                    ⭐ {repo.stargazers_count}
+                    <img
+                      src={starIcon}
+                      alt="Ícone de estrela"
+                      className={styles.icon}
+                    />
+                    {repo.stargazers_count}
                   </span>
                 </div>
               </li>

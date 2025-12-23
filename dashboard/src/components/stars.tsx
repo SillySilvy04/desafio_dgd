@@ -1,9 +1,17 @@
-import styles from './Card.module.css';
+import styles from "./Card.module.css";
+import starIcon from "../assets/star.png";
 
-export function Stars({ count }: { count: number }) {
+interface Props {
+  count: number;
+}
+
+export function Stars({ count }: Props) {
   return (
     <div className={styles.card}>
-      <span className={styles.label}>Stars ⭐</span>
+      <div className={styles.label}>
+        <span>Estrelas</span>
+        <img src={starIcon} alt="Ícone de estrela" className={styles.icon} />
+      </div>
       <span className={styles.value}>{count}</span>
     </div>
   );

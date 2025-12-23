@@ -1,9 +1,17 @@
-import styles from './Card.module.css';
+import styles from "./Card.module.css";
+import eyeIcon from "../assets/eye.png";
 
-export function Watchers({ count }: { count: number }) {
+interface Props {
+  count: number;
+}
+
+export function Watchers({ count }: Props) {
   return (
     <div className={styles.card}>
-      <span className={styles.label}>Total watchers 👀</span>
+      <div className={styles.label}>
+        <span>Total de watchers</span>
+        <img src={eyeIcon} alt="Ícone de olho" className={styles.icon} />
+      </div>
       <span className={styles.value}>{count}</span>
     </div>
   );

@@ -71,6 +71,15 @@
 }
 
 .repoStars {
-  font-size: 0.8rem;
-  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-on-dark-secondary, #a8a8b3);
+  font-size: 0.85rem;
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
 }

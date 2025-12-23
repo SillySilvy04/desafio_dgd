@@ -6,7 +6,7 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
-import styles from "./graphicUsers.module.css";
+import styles from "./GraphicLanguages.module.css";
 
 export interface LanguageData {
   name: string;
