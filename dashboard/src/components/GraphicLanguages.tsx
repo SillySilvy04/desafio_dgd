@@ -40,7 +40,7 @@ export function GraphicUsers({ data }: Props) {
                 nameKey="name"
                 stroke="none"
               >
-                {data.map((entry, index) => (
+                {data.map((_, index) => (
                   <Cell
                     key={`cell-${index}`}
                     fill={COLORS[index % COLORS.length]}
